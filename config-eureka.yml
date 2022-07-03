@@ -1,0 +1,46 @@
+spring:
+  profiles:
+    active: dev
+---
+server:
+  port: 7001
+
+spring:
+  profiles: dev
+  application:
+    name: HelloSpringCloud-eureka-config
+
+#Eureka configuration
+eureka:
+  instance:
+    #hostname: localhost #Eureka server 名称
+    hostname: eureka7001.com #Eureka server 名称
+  client:
+    register-with-eureka: false # 是否向Eureka注册自己
+    fetch-registry: false #自己为注册中心
+    service-url:  #dashboard
+      # 单机 defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      # 集群
+      defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+
+---
+server:
+  port: 7001
+
+spring:
+  profiles: test
+  application:
+    name: HelloSpringCloud-eureka-config
+
+#Eureka configuration
+eureka:
+  instance:
+    #hostname: localhost #Eureka server 名称
+    hostname: eureka7001.com #Eureka server 名称
+  client:
+    register-with-eureka: false # 是否向Eureka注册自己
+    fetch-registry: false #自己为注册中心
+    service-url:  #dashboard
+      # 单机 defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      # 集群
+      defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
